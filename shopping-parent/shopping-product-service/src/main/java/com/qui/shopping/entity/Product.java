@@ -29,8 +29,8 @@ public class Product implements Serializable {
     private double price;
  
     @Lob
-    @Column(name = "Image", length = Integer.MAX_VALUE, nullable = true)
-    private byte[] image;
+    @Column(name = "Image",  length = 255, nullable = false)
+    private String image;
      
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "Create_Date", nullable = false)
@@ -71,11 +71,11 @@ public class Product implements Serializable {
         this.createDate = createDate;
     }
  
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
  
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
  

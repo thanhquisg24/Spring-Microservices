@@ -44,5 +44,17 @@ public class ProductService implements ProductInterface {
 		// TODO Auto-generated method stub
 		  repository.delete(code);
 	}
+
+	@Override
+	public Product updateUProduct(String id, Product product) {
+		// TODO Auto-generated method stub
+		 return repository.save(product);
+	}
+
+	@Override
+	public boolean isProductExist(Product product) {
+		// TODO Auto-generated method stub
+		return repository.exists(product.getCode());
+	}
 	
 }

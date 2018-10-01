@@ -15,4 +15,6 @@ public interface  ProductInterface {
 	public Page<Product> findByName(Pageable pageable, String string);
 	public Product save (Product product);
 	public void delete (String code);
+	public Product updateUProduct(String id, Product product);
+	public boolean isProductExist(Product product);
 }
