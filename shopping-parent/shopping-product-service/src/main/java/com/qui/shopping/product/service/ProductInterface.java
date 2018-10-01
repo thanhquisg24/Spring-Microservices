@@ -10,11 +10,11 @@ import com.qui.shopping.product.entity.Product;
 
 public interface  ProductInterface {
 	
-	public Product findProduct(String code);
+	public void delete (String code);
 	public Set<Product> findAll();
 	public Page<Product> findByName(Pageable pageable, String string);
-	public Product save (Product product);
-	public void delete (String code);
-	public Product updateUProduct(String id, Product product);
+	public Product findProduct(String code);
 	public boolean isProductExist(Product product);
+	public Product save (Product product);
+	public Product updateUProduct(String id, Product product);
 }

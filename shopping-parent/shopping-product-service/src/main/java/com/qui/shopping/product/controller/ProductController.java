@@ -21,7 +21,7 @@ public class ProductController {
 	@Autowired
 	private ProductInterface productService;
 
-		@RequestMapping(path = "product", method = RequestMethod.POST,name="createProduct")
+		@RequestMapping(path = "products", method = RequestMethod.POST,name="createProduct")
 	    public ResponseEntity<Void> createProduct(@RequestBody Product product,UriComponentsBuilder ucBuilder) {
 	    	    if (productService.isProductExist(product)) {
 	    	       // System.out.println("A User with name " + user.getName() + " already exist");
@@ -29,12 +29,12 @@ public class ProductController {
 	    	    }
 	    	    productService.save(product);
 	    	    HttpHeaders headers = new HttpHeaders();
-	    	    headers.setLocation(ucBuilder.path("/product/{id}").buildAndExpand(product.getCode()).toUri());
+	    	    headers.setLocation(ucBuilder.path("/products/{id}").buildAndExpand(product.getCode()).toUri());
 	    	    return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	      
 	    }
 
-	    @RequestMapping(path = "product/{id}", method = RequestMethod.GET,name="getProduct")
+	    @RequestMapping(path = "products/{id}", method = RequestMethod.GET,name="getProduct")
 	    public ResponseEntity<Product> getProduct(@PathVariable(value = "id") String id) {
 	    	 Product product = productService.findProduct(id);
 	    	    if (product == null) {
@@ -45,7 +45,7 @@ public class ProductController {
 	       
 	    }
 
-	    @RequestMapping(path = "product/{id}", method = RequestMethod.PUT,name ="updateProduct")
+	    @RequestMapping(path = "products/{id}", method = RequestMethod.PUT,name ="updateProduct")
 	    public  ResponseEntity<Product> updateProduct(@PathVariable(value = "id") String id,
 	                                     @RequestBody Product product) {
 
@@ -62,7 +62,7 @@ public class ProductController {
 	    
 	    }
 
-	    @RequestMapping(path = "product/{id}", method = RequestMethod.DELETE,
+	    @RequestMapping(path = "products/{id}", method = RequestMethod.DELETE,
 	            name = "deleteProduct")
 	    public  ResponseEntity<Product>  deleteProduct(@PathVariable(value = "id") String id) {
 	

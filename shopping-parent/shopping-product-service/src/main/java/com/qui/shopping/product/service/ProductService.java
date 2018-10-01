@@ -18,7 +18,7 @@ public class ProductService implements ProductInterface {
 	@Override
 	public Product findProduct(String code) {
 		// TODO Auto-generated method stub
-		return null;
+		return repository.findOne(code);
 	}
 
 	@Override

@@ -10,7 +10,7 @@ import com.qui.shopping.product.entity.Product;
 
 public interface ProductRepository extends  CrudRepository<Product, String>{
 
-	 @Query("SELECT t FROM Product t where lower(t.name) like %:p_name%  order by p.createDate desc" )//only work with Named query ,not native query
+	 @Query("SELECT t FROM Product t where lower(t.name) like %:p_name%  order by t.createDate desc" )//only work with Named query ,not native query
 	 Page<Product> findByName(@Param("p_name") String name,Pageable pageable);
 }
 
