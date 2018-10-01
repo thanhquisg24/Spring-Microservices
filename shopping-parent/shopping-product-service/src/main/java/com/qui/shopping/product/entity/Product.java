@@ -1,4 +1,4 @@
-package com.qui.shopping.entity;
+package com.qui.shopping.product.entity;
 
 
 import java.io.Serializable;

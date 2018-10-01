@@ -5,7 +5,7 @@ import java.util.Set;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.qui.shopping.entity.Product;
+import com.qui.shopping.product.entity.Product;
 
 
 public interface  ProductInterface {

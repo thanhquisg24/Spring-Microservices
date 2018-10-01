@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.qui.shopping.entity.Product;
+import com.qui.shopping.product.entity.Product;
 import com.qui.shopping.product.service.ProductInterface;
 
 @RestController
