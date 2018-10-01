@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import com.qui.shopping.entity.Account;
 import com.qui.shopping.entity.Product;
 import com.qui.shopping.form.ProductForm;
 import com.qui.shopping.model.ProductInfo;
