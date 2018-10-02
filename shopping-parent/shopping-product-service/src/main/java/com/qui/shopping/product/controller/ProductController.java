@@ -1,18 +1,25 @@
 package com.qui.shopping.product.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.qui.shopping.product.entity.Product;
 import com.qui.shopping.product.service.ProductInterface;
+import com.qui.shopping.web.common.PageWrapper;
+
 
 @RestController
 public class ProductController {
@@ -21,6 +28,20 @@ public class ProductController {
 	@Autowired
 	private ProductInterface productService;
 
+	@RequestMapping(path = "/products", method = RequestMethod.GET,name="getProducts")
+    public ResponseEntity<PageWrapper<Product>> getProducts(@RequestParam(value="name",required=false,defaultValue="") String name,@RequestParam(value="page",required=false,defaultValue="1") int p) {
+		
+		if(p==0){
+			p=1;
+		}
+		UriComponentsBuilder  uri=UriComponentsBuilder.fromPath("products");
+		PageRequest pageRequest=new  PageRequest(p-1, PageWrapper.MAX_PAGE_ITEM_DISPLAY, Direction.DESC,"id");
+    	Page<Product> pageProduct=productService.findByName(pageRequest, name);
+		PageWrapper<Product> page = new PageWrapper<Product>(pageProduct, uri.build().toString());
+    	
+		return new ResponseEntity<PageWrapper<Product>>(page, HttpStatus.OK);
+    	
+    }
 		@RequestMapping(path = "products", method = RequestMethod.POST,name="createProduct")
 	    public ResponseEntity<Void> createProduct(@RequestBody Product product,UriComponentsBuilder ucBuilder) {
 	    	    if (productService.isProductExist(product)) {

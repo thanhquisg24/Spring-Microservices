@@ -1,3 +1,5 @@
+package com.qui.shopping.config;
+
 /**
  * 
  */
@@ -5,7 +7,7 @@
  * @author qui
  *
  */
-package com.qui.shopping.config;
+
 
 
 import org.springframework.context.MessageSource;

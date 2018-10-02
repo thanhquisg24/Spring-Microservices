@@ -9,7 +9,8 @@ spring:
     org.springframework.web: DEBUG        
 server:
   port: ${PORT:8765}
-    
+sidecar:
+  port: 8000    
 endpoints:
   restart:
     enabled: true
@@ -22,7 +23,7 @@ zuul:
   prefix: /api
   routes:
     products: 
-      path: /products/**
+      path: /shopping-product-service/**
       serviceId: shopping-product-service
     
 
@@ -31,10 +32,14 @@ ribbon:
     enabled: true
 
 eureka:
+  instance:
+    hostname: shopping-api-gateway
   client:
+    registerWithEureka: true
+    fetchRegistry: true
     serviceUrl:
       defaultZone:  ${DISCOVERY_URL:http://localhost:8761}/eureka/
-    registerWithEureka: false
-
+      #defaultZone: ${DISCOVERY_URL:http://172.17.0.1:8761}/eureka/
+   
 
 
