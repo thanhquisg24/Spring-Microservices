@@ -34,7 +34,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.qui.shopping.proiduct.Application</mainClass>
+                    <mainClass>com.qui.shopping.product.Application</mainClass>
                     <addResources>true</addResources>
                 </configuration>
                 <executions>

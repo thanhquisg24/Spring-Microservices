@@ -102,5 +102,6 @@
        <modules>
        	<module>shopping-discovery-service</module>
        	<module>shopping-product-service</module>
+       	<module>shopping-api-gateway</module>
        </modules>
 </project>

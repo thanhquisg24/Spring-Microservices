@@ -1,0 +1,40 @@
+info:
+  component: SHOPPING-API-GATEWAY
+spring:
+  application:
+    name: shopping-api-gateway
+  logging:
+   level:
+    ROOT: INFO
+    org.springframework.web: DEBUG        
+server:
+  port: ${PORT:8765}
+    
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+
+zuul:
+  prefix: /api
+  routes:
+    products: 
+      path: /products/**
+      serviceId: shopping-product-service
+    
+
+ribbon:
+  eureka:
+    enabled: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:  ${DISCOVERY_URL:http://localhost:8761}/eureka/
+    registerWithEureka: false
+
+
+
