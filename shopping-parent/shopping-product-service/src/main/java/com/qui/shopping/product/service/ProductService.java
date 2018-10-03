@@ -1,5 +1,6 @@
 package com.qui.shopping.product.service;
 
+import java.util.Date;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ public class ProductService implements ProductInterface {
 	@Override
 	public Product save(Product product) {
 		// TODO Auto-generated method stub
+		 product.setCreateDate(new Date());
 		 return repository.save(product);
 	}
 
@@ -55,6 +57,12 @@ public class ProductService implements ProductInterface {
 	public boolean isProductExist(Product product) {
 		// TODO Auto-generated method stub
 		return repository.exists(product.getCode());
+	}
+
+	@Override
+	public boolean isProductExist(String code) {
+		// TODO Auto-generated method stub
+		return repository.exists(code);
 	}
 	
 }

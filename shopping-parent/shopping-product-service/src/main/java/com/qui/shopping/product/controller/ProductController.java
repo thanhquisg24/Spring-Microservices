@@ -34,7 +34,7 @@ public class ProductController {
 		if(p==0){
 			p=1;
 		}
-		UriComponentsBuilder  uri=UriComponentsBuilder.fromPath("products");
+		UriComponentsBuilder  uri=UriComponentsBuilder.fromPath("products").queryParam("name", name).queryParam("p", p);
 		PageRequest pageRequest=new  PageRequest(p-1, PageWrapper.MAX_PAGE_ITEM_DISPLAY, Direction.DESC,"id");
     	Page<Product> pageProduct=productService.findByName(pageRequest, name);
 		PageWrapper<Product> page = new PageWrapper<Product>(pageProduct, uri.build().toString());
@@ -44,7 +44,7 @@ public class ProductController {
     }
 		@RequestMapping(path = "products", method = RequestMethod.POST,name="createProduct")
 	    public ResponseEntity<Void> createProduct(@RequestBody Product product,UriComponentsBuilder ucBuilder) {
-	    	    if (productService.isProductExist(product)) {
+	    	    if (productService.isProductExist(product) || product.getCode().isEmpty()) {
 	    	       // System.out.println("A User with name " + user.getName() + " already exist");
 	    	        return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 	    	    }
@@ -78,7 +78,7 @@ public class ProductController {
 	    	    currentproduct.setName(product.getName());
 	    	    currentproduct.setPrice(product.getPrice());
 	    	    currentproduct.setImage(product.getImage());
-	    	    productService.updateUProduct(id, product);
+	    	    productService.updateUProduct(id, currentproduct);
 	    	    return new ResponseEntity<Product>(currentproduct, HttpStatus.OK);
 	    
 	    }
