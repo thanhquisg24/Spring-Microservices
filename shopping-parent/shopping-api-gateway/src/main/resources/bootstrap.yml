@@ -38,8 +38,8 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone:  ${DISCOVERY_URL:http://localhost:8761}/eureka/
-      #defaultZone: ${DISCOVERY_URL:http://172.17.0.1:8761}/eureka/
+      #defaultZone:  ${DISCOVERY_URL:http://localhost:8761}/eureka/
+      defaultZone: ${DISCOVERY_URL:http://172.17.0.1:8761}/eureka/
    
 
 

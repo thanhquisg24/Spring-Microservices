@@ -1,41 +1,25 @@
-package com.qui.shopping.product.entity;
+package com.qui.shopping.common.model;
 
 
-import java.io.Serializable;
 import java.util.Date;
  
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+public class ProductModel  {
  
-@Entity
-@Table(name = "Products")
-public class Product implements Serializable {
- 
-    private static final long serialVersionUID = -1000119078147252957L;
- 
-    @Id
-    @Column(name = "Code", length = 20, nullable = false)
     private String code;
  
-    @Column(name = "Name", length = 255, nullable = false)
     private String name;
  
-    @Column(name = "Price", nullable = false)
+   
     private double price;
  
 
-    @Column(name = "Image",  length = 255, nullable = false)
     private String image;
      
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "Create_Date", nullable = false)
+  
     private Date createDate;
  
-    public Product() {
+    public ProductModel() {
     }
  
     public String getCode() {
