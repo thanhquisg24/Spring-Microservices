@@ -1,6 +1,7 @@
 package com.qui.shopping.web.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -32,6 +33,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.qui.shopping.common.model.ProductModel;
 import com.qui.shopping.web.common.PageWrapper;
 import com.qui.shopping.web.common.ResponePageImpl;
+import com.qui.shopping.web.pagination.PaginationResult;
 import com.qui.shopping.web.service.ProductService;
 
 
@@ -58,6 +60,23 @@ public class ProductController {
     	model.addAttribute("headTitle", "layout.title.services");
         return "client/services/list";
     }*/
+	
+	  @RequestMapping({ "/productList" })
+	  public String listProductHandler(Model model, //
+	         @RequestParam(value = "name", defaultValue = "") String likeName,
+	         @RequestParam(value = "page", defaultValue = "1") int page) throws JsonParseException, JsonMappingException, IOException {
+	      
+	      final int maxNavigationPage = 10;
+	      //get product from client
+	      ResponePageImpl<ProductModel>  m =productService.getProducts(likeName, page);
+	      
+	      PaginationResult<ProductModel> result =new PaginationResult<ProductModel>(m.getContent(), page,
+	    		  									m.getTotalPages(), m.getTotalElements(),  maxNavigationPage);
+	 
+	      model.addAttribute("paginationProducts", result);
+	      return "productList";
+	   }
+	
 	@RequestMapping(path = "/products/{id}", method = RequestMethod.GET,name="getProduct")
 	@ResponseBody
 	public ProductModel getProduct(@PathVariable(value = "id") String id) {	

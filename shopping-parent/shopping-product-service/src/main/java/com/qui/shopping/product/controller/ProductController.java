@@ -29,7 +29,7 @@ public class ProductController {
 	private ProductInterface productService;
 
 	@RequestMapping(path = "/products", method = RequestMethod.GET,name="getProducts")
-    public ResponseEntity<PageWrapper<Product>> getProducts(@RequestParam(value="name",required=false,defaultValue="") String name,@RequestParam(value="page",required=false,defaultValue="1") int p) {
+    public ResponseEntity<Page<Product>> getProducts(@RequestParam(value="name",required=false,defaultValue="") String name,@RequestParam(value="page",required=false,defaultValue="1") int p) {
 		
 		if(p==0){
 			p=1;
@@ -37,9 +37,9 @@ public class ProductController {
 		UriComponentsBuilder  uri=UriComponentsBuilder.fromPath("products").queryParam("name", name).queryParam("p", p);
 		PageRequest pageRequest=new  PageRequest(p-1, PageWrapper.MAX_PAGE_ITEM_DISPLAY, Direction.DESC,"id");
     	Page<Product> pageProduct=productService.findByName(pageRequest, name);
-		PageWrapper<Product> page = new PageWrapper<Product>(pageProduct, uri.build().toString());
+		//PageWrapper<Product> page = new PageWrapper<Product>(pageProduct, uri.build().toString());
     	
-		return new ResponseEntity<PageWrapper<Product>>(page, HttpStatus.OK);
+		return new ResponseEntity<Page<Product>>(pageProduct, HttpStatus.OK);
     	
     }
 		@RequestMapping(path = "products", method = RequestMethod.POST,name="createProduct")
