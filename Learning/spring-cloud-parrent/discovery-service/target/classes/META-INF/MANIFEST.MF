@@ -5,6 +5,6 @@ Built-By: qui
 Implementation-Vendor-Id: com.qui
 Build-Jdk: 1.8.0_161
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
- ot-starter-parent/spring-cloud-parrent/discovery-service
+ ot-starter-parent/spring-cloud-parrent/discovery
 Created-By: Maven Integration for Eclipse
 
