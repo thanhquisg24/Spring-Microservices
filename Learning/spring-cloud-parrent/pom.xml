@@ -63,5 +63,6 @@
 		<module>config-service</module>
 		<module>discovery-service</module>
 		<module>authors-service</module>
+		<module>artcles-service</module>
 	</modules>
 </project>
