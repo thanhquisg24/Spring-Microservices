@@ -5,7 +5,11 @@ spring:
     
 ---
 spring:
-    profiles: development
+    profiles: development  
+    boot:
+      admin:
+        client:
+          url: http://localhost:9090/ 
 eureka:
    instance:
      hostname: AUTHORS
@@ -13,7 +17,7 @@ eureka:
      registerWithEureka: true
      fetchRegistry: true
      serviceUrl:
-       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}   
+       defaultZone: ${DISCOVERY_URL:http://localhost:8761/eureka}   
 # Ribbon config
 #ribbon:
 #  eureka:
@@ -28,4 +32,4 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://discovery-service:8761/eureka/  
+      defaultZone: http://discovery:8761/eureka/  
